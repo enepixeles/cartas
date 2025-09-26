@@ -50,16 +50,16 @@ body {
 /* --- Diseño de cada Tarjeta de Premio --- */
 .premio-card {
     border-radius: 16px;
-    padding: 60px 20px; /* <<< CAMBIO REALIZADO AQUÍ */
+    padding: 60px 20px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: none; /* <<< CAMBIO REALIZADO AQUÍ */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease;
     min-height: 320px;
     cursor: pointer;
-    box-sizing: border-box; /* Asegura que el padding se incluya en la altura total */
+    box-sizing: border-box;
 }
 
 .premio-card:hover {
