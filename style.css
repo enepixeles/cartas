@@ -7,6 +7,7 @@ body {
     background-color: #f4f7f9;
     margin: 0;
     padding: 40px 0;
+    overflow-x: hidden;
 }
 
 /* --- Contenedor Principal --- */
@@ -16,28 +17,20 @@ body {
     padding: 0 20px;
 }
 
-.premios-container h1 {
+.premios-container h1, .card-row h2 {
     text-align: center;
-    font-size: 2.5rem;
     color: #333;
     margin-bottom: 50px;
 }
-
-/* --- Estructura de cada Fila de Tarjetas --- */
-.card-row {
-    margin-bottom: 50px;
-}
-
 .card-row h2 {
-    font-size: 1.8rem;
-    color: #333;
+    text-align: left;
     margin-bottom: 20px;
-    /* Se eliminó el borde y el padding de la izquierda */
 }
 
 /* --- Contenedor del Carrusel y Flechas --- */
 .carousel-wrapper {
     position: relative;
+    padding: 0 30px;
 }
 
 .carousel-container {
@@ -47,15 +40,14 @@ body {
 .carousel-track {
     display: grid;
     gap: 20px;
-    /* Define el tamaño de las columnas */
     grid-auto-flow: column;
-    grid-auto-columns: calc(50% - 10px); /* 2 tarjetas visibles en móvil */
+    grid-auto-columns: calc(50% - 10px);
     transition: transform 0.5s ease-in-out;
 }
 
 /* --- Diseño de cada Tarjeta de Premio --- */
 .premio-card {
-    border-radius: 4px; /* Bordes redondeados solicitados */
+    border-radius: 16px; /* <<< CAMBIO REALIZADO AQUÍ */
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -63,11 +55,12 @@ body {
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease;
-    min-height: 280px; /* Altura mínima para consistencia */
+    min-height: 280px;
+    cursor: pointer;
 }
 
 .premio-card:hover {
-    transform: translateY(-5px); /* Efecto sutil al pasar el cursor */
+    transform: translateY(-5px);
 }
 
 .premio-card img {
@@ -81,31 +74,27 @@ body {
     font-size: 1.2rem;
     font-weight: 600;
     margin: 0 0 8px 0;
-    color: #2c3e50;
+    color: #333;
 }
 
 .premio-card .card-description {
     font-size: 0.9rem;
-    color: #7f8c8d;
     line-height: 1.4;
-    flex-grow: 1; /* Empuja el botón hacia abajo */
+    flex-grow: 1;
     margin-bottom: 20px;
+    color: #333;
 }
 
 .card-cta-button {
-    background-color: #fff;
+    background-color: transparent;
     color: #333;
-    border: 1px solid #ddd;
-    padding: 10px 20px;
-    border-radius: 4px;
+    border: 1px solid #555;
+    padding: 8px 24px;
+    border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.card-cta-button:hover {
-    background-color: #333;
-    color: #fff;
+    transition: none;
+    align-self: center;
 }
 
 /* --- Colores Pastel para las Tarjetas --- */
@@ -114,50 +103,55 @@ body {
 .premio-card:nth-of-type(4n + 3) { background-color: #bbdefb; }
 .premio-card:nth-of-type(4n + 4) { background-color: #fff9c4; }
 
-/* --- Flechas de Navegación del Carrusel --- */
+/* --- Flechas de Navegación del Carrusel con SVG --- */
 .carousel-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.9);
+    background: transparent;
     border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+    color: #333;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     z-index: 10;
-    display: none; /* Ocultas por defecto */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-arrow svg {
+    width: 32px;
+    height: 32px;
 }
 
 .carousel-arrow.visible {
-    display: block; /* Se muestran con JS si son necesarias */
+    display: flex;
 }
 
 .carousel-arrow:disabled {
     cursor: not-allowed;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
-.arrow-left { left: -20px; }
-.arrow-right { right: -20px; }
+.arrow-left { left: -15px; }
+.arrow-right { right: -15px; }
 
-/* --- Ventana Modal para el Zoom --- */
+
+/* --- Ventana Modal para el Zoom (Pantalla Completa) --- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
 }
 
 .modal-overlay.active {
@@ -166,26 +160,55 @@ body {
 }
 
 .modal-content {
-    position: relative;
-    width: 90%;
-    max-width: 400px;
+   max-width: 500px;
+   width: 100%;
+   padding: 20px;
+   box-sizing: border-box;
+}
+
+.modal-content .premio-card {
+    background-color: transparent !important;
+    box-shadow: none;
+    border: none;
+    cursor: default;
+    min-height: auto;
+}
+
+.modal-content .premio-card img {
+    transform: scale(1.5);
+    margin-bottom: 25px;
+}
+
+.modal-content .premio-card .card-title,
+.modal-content .premio-card .card-description {
+    color: #333;
+    text-shadow: none;
+}
+.modal-content .premio-card .card-title {
+    font-size: 2rem;
+}
+.modal-content .premio-card .card-description {
+    font-size: 1.2rem;
 }
 
 .modal-close-button {
-    position: absolute;
-    top: -40px;
-    right: -10px;
+    position: fixed;
+    top: 20px;
+    right: 30px;
     background: none;
     border: none;
-    color: white;
+    color: #333;
     font-size: 3rem;
     cursor: pointer;
+    z-index: 1001;
+    text-shadow: none;
 }
 
 /* --- Media Query para Desktop (Diseño Responsivo) --- */
 @media (min-width: 992px) {
     .carousel-track {
-        /* 4 tarjetas visibles en escritorio */
         grid-auto-columns: calc(25% - 15px);
     }
+    .arrow-left { left: 0; }
+    .arrow-right { right: 0; }
 }
