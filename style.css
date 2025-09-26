@@ -1,0 +1,191 @@
+/* --- Importación de Fuentes (Opcional, pero recomendado) --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* --- Estilos Generales --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 40px 0;
+}
+
+/* --- Contenedor Principal --- */
+.premios-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.premios-container h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+/* --- Estructura de cada Fila de Tarjetas --- */
+.card-row {
+    margin-bottom: 50px;
+}
+
+.card-row h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    /* Se eliminó el borde y el padding de la izquierda */
+}
+
+/* --- Contenedor del Carrusel y Flechas --- */
+.carousel-wrapper {
+    position: relative;
+}
+
+.carousel-container {
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: grid;
+    gap: 20px;
+    /* Define el tamaño de las columnas */
+    grid-auto-flow: column;
+    grid-auto-columns: calc(50% - 10px); /* 2 tarjetas visibles en móvil */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* --- Diseño de cada Tarjeta de Premio --- */
+.premio-card {
+    border-radius: 4px; /* Bordes redondeados solicitados */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+    min-height: 280px; /* Altura mínima para consistencia */
+}
+
+.premio-card:hover {
+    transform: translateY(-5px); /* Efecto sutil al pasar el cursor */
+}
+
+.premio-card img {
+    max-width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto 15px;
+}
+
+.premio-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #2c3e50;
+}
+
+.premio-card .card-description {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    line-height: 1.4;
+    flex-grow: 1; /* Empuja el botón hacia abajo */
+    margin-bottom: 20px;
+}
+
+.card-cta-button {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card-cta-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* --- Colores Pastel para las Tarjetas --- */
+.premio-card:nth-of-type(4n + 1) { background-color: #ffdde1; }
+.premio-card:nth-of-type(4n + 2) { background-color: #c8e6c9; }
+.premio-card:nth-of-type(4n + 3) { background-color: #bbdefb; }
+.premio-card:nth-of-type(4n + 4) { background-color: #fff9c4; }
+
+/* --- Flechas de Navegación del Carrusel --- */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    display: none; /* Ocultas por defecto */
+}
+
+.carousel-arrow.visible {
+    display: block; /* Se muestran con JS si son necesarias */
+}
+
+.carousel-arrow:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.arrow-left { left: -20px; }
+.arrow-right { right: -20px; }
+
+/* --- Ventana Modal para el Zoom --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: -40px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+/* --- Media Query para Desktop (Diseño Responsivo) --- */
+@media (min-width: 992px) {
+    .carousel-track {
+        /* 4 tarjetas visibles en escritorio */
+        grid-auto-columns: calc(25% - 15px);
+    }
+}
