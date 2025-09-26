@@ -59,13 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         window.addEventListener('resize', updateCarousel);
         
-        // --- CAMBIO: LÓGICA PARA EL DESLIZAMIENTO TÁCTIL ---
         let touchStartX = 0;
         let touchEndX = 0;
 
         track.addEventListener('touchstart', e => {
             touchStartX = e.touches[0].clientX;
-            touchEndX = 0; // Resetear en cada nuevo toque
+            touchEndX = 0; 
         }, { passive: true });
 
         track.addEventListener('touchmove', e => {
@@ -73,21 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         track.addEventListener('touchend', () => {
-            // Si touchEndX no cambió, fue un tap, no un swipe.
             if (touchEndX === 0) return;
 
             const diff = touchStartX - touchEndX;
-            const threshold = 50; // El usuario debe deslizar al menos 50px
+            const threshold = 50; 
 
             if (diff > threshold) {
-                // Deslizó hacia la izquierda
                 nextButton.click();
             } else if (diff < -threshold) {
-                // Deslizó hacia la derecha
                 prevButton.click();
             }
         });
-        // --- FIN DEL CAMBIO ---
 
         setTimeout(updateCarousel, 100);
     });

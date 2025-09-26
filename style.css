@@ -35,6 +35,8 @@ body {
 
 .carousel-container {
     overflow: hidden;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .carousel-track {
@@ -48,15 +50,16 @@ body {
 /* --- Diseño de cada Tarjeta de Premio --- */
 .premio-card {
     border-radius: 16px;
-    padding: 20px;
+    padding: 60px 20px; /* <<< CAMBIO REALIZADO AQUÍ */
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease;
-    min-height: 280px;
+    min-height: 320px;
     cursor: pointer;
+    box-sizing: border-box; /* Asegura que el padding se incluya en la altura total */
 }
 
 .premio-card:hover {
@@ -97,11 +100,27 @@ body {
     align-self: center;
 }
 
-/* --- Colores Pastel para las Tarjetas --- */
-.premio-card:nth-of-type(4n + 1) { background-color: #ffdde1; }
-.premio-card:nth-of-type(4n + 2) { background-color: #c8e6c9; }
-.premio-card:nth-of-type(4n + 3) { background-color: #bbdefb; }
-.premio-card:nth-of-type(4n + 4) { background-color: #fff9c4; }
+/* --- Colores Pastel específicos por fila --- */
+.row-1 .premio-card:nth-of-type(4n + 1) { background-color: #ffdde1; }
+.row-1 .premio-card:nth-of-type(4n + 2) { background-color: #c8e6c9; }
+.row-1 .premio-card:nth-of-type(4n + 3) { background-color: #bbdefb; }
+.row-1 .premio-card:nth-of-type(4n + 4) { background-color: #fff9c4; }
+
+.row-2 .premio-card:nth-of-type(4n + 1) { background-color: #c8e6c9; }
+.row-2 .premio-card:nth-of-type(4n + 2) { background-color: #bbdefb; }
+.row-2 .premio-card:nth-of-type(4n + 3) { background-color: #fff9c4; }
+.row-2 .premio-card:nth-of-type(4n + 4) { background-color: #d1c4e9; }
+
+.row-3 .premio-card:nth-of-type(4n + 1) { background-color: #bbdefb; }
+.row-3 .premio-card:nth-of-type(4n + 2) { background-color: #fff9c4; }
+.row-3 .premio-card:nth-of-type(4n + 3) { background-color: #d1c4e9; }
+.row-3 .premio-card:nth-of-type(4n + 4) { background-color: #ffccbc; }
+
+.row-4 .premio-card:nth-of-type(4n + 1) { background-color: #fff9c4; }
+.row-4 .premio-card:nth-of-type(4n + 2) { background-color: #d1c4e9; }
+.row-4 .premio-card:nth-of-type(4n + 3) { background-color: #ffccbc; }
+.row-4 .premio-card:nth-of-type(4n + 4) { background-color: #ffdde1; }
+
 
 /* --- Flechas de Navegación del Carrusel con SVG --- */
 .carousel-arrow {
@@ -206,9 +225,14 @@ body {
 
 /* --- Media Query para Desktop (Diseño Responsivo) --- */
 @media (min-width: 992px) {
+    .carousel-container {
+        padding: 0;
+    }
+    
     .carousel-track {
         grid-auto-columns: calc(25% - 15px);
     }
+    
     .arrow-left { left: 0; }
     .arrow-right { right: 0; }
 }
