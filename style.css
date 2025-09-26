@@ -41,13 +41,13 @@ body {
     display: grid;
     gap: 20px;
     grid-auto-flow: column;
-    grid-auto-columns: calc(50% - 10px);
+    grid-auto-columns: 100%; 
     transition: transform 0.5s ease-in-out;
 }
 
 /* --- Diseño de cada Tarjeta de Premio --- */
 .premio-card {
-    border-radius: 16px; /* <<< CAMBIO REALIZADO AQUÍ */
+    border-radius: 16px;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
