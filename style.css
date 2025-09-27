@@ -53,7 +53,7 @@ body {
 /* --- Diseño de cada Tarjeta de Premio --- */
 .premio-card {
     border-radius: 16px;
-    padding: 140px 20px 40px 20px;
+    padding: 180px 20px 40px 20px;
     text-align: center;
     box-shadow: none;
     display: flex;
