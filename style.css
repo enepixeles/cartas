@@ -34,7 +34,9 @@ body {
 }
 
 .carousel-container {
-    overflow: hidden;
+    /* CAMBIO: Se permite el desbordamiento vertical */
+    overflow-y: visible;
+    overflow-x: hidden;
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -45,21 +47,23 @@ body {
     grid-auto-flow: column;
     grid-auto-columns: 100%; 
     transition: transform 0.5s ease-in-out;
+    padding-top: 70px;
 }
 
 /* --- Diseño de cada Tarjeta de Premio --- */
 .premio-card {
     border-radius: 16px;
-    padding: 60px 20px;
+    padding: 140px 20px 40px 20px;
     text-align: center;
-    box-shadow: none; /* <<< CAMBIO REALIZADO AQUÍ */
+    box-shadow: none;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease;
-    min-height: 320px;
+    min-height: 420px;
     cursor: pointer;
     box-sizing: border-box;
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
 .premio-card:hover {
@@ -67,10 +71,13 @@ body {
 }
 
 .premio-card img {
-    max-width: 80px;
-    height: 80px;
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
     object-fit: contain;
-    margin: 0 auto 15px;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.2));
 }
 
 .premio-card .card-title {
@@ -191,11 +198,15 @@ body {
     border: none;
     cursor: default;
     min-height: auto;
+    padding: 20px;
 }
 
 .modal-content .premio-card img {
-    transform: scale(1.5);
-    margin-bottom: 25px;
+    position: static;
+    transform: none;
+    width: 80%;
+    margin: 0 auto 25px;
+    filter: none;
 }
 
 .modal-content .premio-card .card-title,
@@ -235,4 +246,134 @@ body {
     
     .arrow-left { left: 0; }
     .arrow-right { right: 0; }
-}
+}```
+
+---
+
+### 3. `script.js`
+
+(No se necesitaron cambios en este archivo).
+
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+
+    /**
+     * INICIALIZADOR DE CARRUSELES
+     */
+    document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
+        const track = wrapper.querySelector('.carousel-track');
+        if (!track) return;
+
+        const cards = Array.from(track.children);
+        const nextButton = wrapper.querySelector('.arrow-right');
+        const prevButton = wrapper.querySelector('.arrow-left');
+        let currentIndex = 0;
+
+        if (cards.length === 0) return;
+
+        const getVisibleCardsCount = () => {
+            if (cards.length === 0) return 0;
+            const cardWidth = cards[0].offsetWidth;
+            const trackGap = parseInt(window.getComputedStyle(track).gap) || 0;
+            const containerWidth = wrapper.querySelector('.carousel-container').offsetWidth;
+            return Math.round(containerWidth / (cardWidth + trackGap));
+        };
+
+        const updateCarousel = () => {
+            const visibleCards = getVisibleCardsCount();
+            
+            if (cards.length > visibleCards) {
+                nextButton.classList.add('visible');
+                prevButton.classList.add('visible');
+            } else {
+                nextButton.classList.remove('visible');
+                prevButton.classList.remove('visible');
+            }
+
+            prevButton.disabled = currentIndex === 0;
+            nextButton.disabled = currentIndex >= cards.length - visibleCards;
+            
+            const cardWidth = cards[0].offsetWidth;
+            const trackGap = parseInt(window.getComputedStyle(track).gap) || 0;
+            const offset = -currentIndex * (cardWidth + trackGap);
+            track.style.transform = `translateX(${offset}px)`;
+        };
+        
+        nextButton.addEventListener('click', () => {
+            const visibleCards = getVisibleCardsCount();
+            if (currentIndex < cards.length - visibleCards) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+        
+        window.addEventListener('resize', updateCarousel);
+        
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchEndX = 0; 
+        }, { passive: true });
+
+        track.addEventListener('touchmove', e => {
+            touchEndX = e.touches[0].clientX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', () => {
+            if (touchEndX === 0) return;
+
+            const diff = touchStartX - touchEndX;
+            const threshold = 50; 
+
+            if (diff > threshold) {
+                nextButton.click();
+            } else if (diff < -threshold) {
+                prevButton.click();
+            }
+        });
+
+        setTimeout(updateCarousel, 100);
+    });
+
+
+    /**
+     * INICIALIZADOR DEL MODAL
+     */
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalContent = document.getElementById('modalContent');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    
+    document.querySelectorAll('.premio-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const cardColor = window.getComputedStyle(card).backgroundColor;
+            const clonedCard = card.cloneNode(true);
+            
+            clonedCard.querySelector('.card-cta-button').remove();
+
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clonedCard);
+            modalOverlay.style.backgroundColor = cardColor;
+            modalOverlay.classList.add('active');
+        });
+    });
+
+    const closeModal = () => {
+        modalOverlay.classList.remove('active');
+    };
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+});```
