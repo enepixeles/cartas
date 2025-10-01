@@ -87,6 +87,7 @@
 }
 
 .stat-box {
+    /* CAMBIO: Se actualiza el color de fondo */
     background-color: #f4f6f5;
     padding: 15px 20px;
     border-radius: 16px;
@@ -104,9 +105,8 @@
 }
 
 .stat-box-icon svg {
-    /* CAMBIO: Se ajusta el tamaño a 16x16px */
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
 }
 
 .stat-box-label {
@@ -119,6 +119,8 @@
     font-weight: 700;
     color: #1a1a1a;
 }
+
+/* CAMBIO: Se eliminan los colores específicos ya que no son necesarios */
 
 
 /* --- Estilos Generales --- */
