@@ -103,10 +103,9 @@
     color: #555;
 }
 
-.stat-box-icon svg {
-    /* CAMBIO: Se ajusta el tamaño a 16x16px */
-    width: 16px;
-    height: 16px;
+.stat-box-icon img {
+    width: 24px;
+    height: 24px;
 }
 
 .stat-box-label {
@@ -119,7 +118,6 @@
     font-weight: 700;
     color: #1a1a1a;
 }
-
 
 /* --- Estilos Generales --- */
 body {
@@ -233,26 +231,16 @@ body {
     align-self: center;
 }
 
-/* --- Colores Pastel específicos por fila --- */
-.row-1 .premio-card:nth-of-type(4n + 1) { background-color: #ffdde1; }
-.row-1 .premio-card:nth-of-type(4n + 2) { background-color: #c8e6c9; }
-.row-1 .premio-card:nth-of-type(4n + 3) { background-color: #bbdefb; }
-.row-1 .premio-card:nth-of-type(4n + 4) { background-color: #fff9c4; }
+/* --- NUEVO: Clases de color para las tarjetas --- */
+.fondo-rosado { background-color: #ffdde1; }
+.fondo-verde { background-color: #c8e6c9; }
+.fondo-azul { background-color: #bbdefb; }
+.fondo-amarillo { background-color: #fff9c4; }
+.fondo-morado { background-color: #d1c4e9; }
+.fondo-naranjo { background-color: #ffccbc; }
+.fondo-gris { background-color: #f2f2f2; }
 
-.row-2 .premio-card:nth-of-type(4n + 1) { background-color: #c8e6c9; }
-.row-2 .premio-card:nth-of-type(4n + 2) { background-color: #bbdefb; }
-.row-2 .premio-card:nth-of-type(4n + 3) { background-color: #fff9c4; }
-.row-2 .premio-card:nth-of-type(4n + 4) { background-color: #d1c4e9; }
-
-.row-3 .premio-card:nth-of-type(4n + 1) { background-color: #bbdefb; }
-.row-3 .premio-card:nth-of-type(4n + 2) { background-color: #fff9c4; }
-.row-3 .premio-card:nth-of-type(4n + 3) { background-color: #d1c4e9; }
-.row-3 .premio-card:nth-of-type(4n + 4) { background-color: #ffccbc; }
-
-.row-4 .premio-card:nth-of-type(4n + 1) { background-color: #fff9c4; }
-.row-4 .premio-card:nth-of-type(4n + 2) { background-color: #d1c4e9; }
-.row-4 .premio-card:nth-of-type(4n + 3) { background-color: #ffccbc; }
-.row-4 .premio-card:nth-of-type(4n + 4) { background-color: #ffdde1; }
+/* --- CAMBIO: Se eliminan las reglas de color :nth-of-type --- */
 
 
 /* --- Flechas de Navegación del Carrusel con SVG --- */
