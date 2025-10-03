@@ -155,13 +155,13 @@ body {
 /* --- Contenedor del Carrusel y Flechas --- */
 .carousel-wrapper {
     position: relative;
-    padding: 0 30px;
+    padding: 0 20px;
 }
 
 .carousel-container {
     overflow-y: visible;
     overflow-x: hidden;
-    padding: 0 20px;
+    padding: 0 10px;
     box-sizing: border-box;
 }
 
