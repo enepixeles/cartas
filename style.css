@@ -225,14 +225,14 @@ body {
     font-size: 0.6rem;
     color: #555;
     line-height: 1.4;
-    margin: 0 0 12px 0;
+    margin: 0 0 20px 0;
 }
 
 .card-description {
     font-size: 0.7rem;
     line-height: 1.6;
     flex-grow: 1;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #333;
 }
 
@@ -455,7 +455,7 @@ body {
     /* --- CAMBIO: Aumento de tamaño para tarjetas en mobile --- */
     .premio-card {
         min-height: 504px; /* 420px * 1.2 */
-        padding-top: 198px; /* 165px * 1.2 */
+        padding-top: 210px; /* 165px * 1.2 */
     }
 
     .premio-card img {
@@ -468,11 +468,11 @@ body {
     }
 
     .card-subtitle {
-        font-size: 0.72rem; /* 0.6rem * 1.2 */
+        font-size: 0.8rem; /* 0.6rem * 1.2 */
     }
 
     .card-description {
-        font-size: 0.84rem; /* 0.7rem * 1.2 */
+        font-size: 0.9rem; /* 0.7rem * 1.2 */
     }
 
     .card-stat {
