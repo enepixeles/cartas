@@ -205,19 +205,65 @@ body {
     filter: none;
 }
 
-.premio-card .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0 0 8px 0;
-    color: #333;
+.card-content-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    text-align: left;
 }
 
-.premio-card .card-description {
+.card-main-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 2px 0;
+}
+
+.card-subtitle {
+    font-size: 0.6rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+}
+
+.card-description {
     font-size: 0.7rem;
     line-height: 1.6;
     flex-grow: 1;
     margin-bottom: 20px;
     color: #333;
+}
+
+.card-stats-container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.card-stat {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.card-stat-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #333;
+    text-align: center;
+}
+
+.card-stat-value {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 2px;
+    text-align: center;
 }
 
 .card-cta-button {
@@ -242,7 +288,7 @@ body {
 .fondo-naranjo { background-color: #ffccbc; }
 .fondo-gris { background-color: #f2f2f2; }
 
-/* --- NUEVO: Estilos para la tarjeta de marcador de posición --- */
+/* --- Estilos para la tarjeta de marcador de posición --- */
 .premio-card-placeholder {
     background-color: #f8f9fa !important;
     border: 2px dashed #dee2e6;
@@ -313,6 +359,7 @@ body {
 
 .arrow-left { left: -15px; }
 .arrow-right { right: -15px; }
+
 
 /* --- Ventana Modal para el Zoom (Pantalla Completa) --- */
 .modal-overlay {
@@ -387,89 +434,75 @@ body {
 
 /* --- Media Query para Desktop (Diseño Responsivo) --- */
 @media (min-width: 992px) {
-    .carousel-container {
-        padding: 0;
-    }
-    
-    .carousel-track {
-        grid-auto-columns: calc(25% - 15px);
-    }
-    
-    .card-row h2 {
-        padding-left: 30px;
-    }
-    
-    .profile-info {
-        padding-left: 30px;
-    }
-
+    .carousel-container { padding: 0; }
+    .carousel-track { grid-auto-columns: calc(25% - 15px); }
+    .card-row h2 { padding-left: 30px; }
+    .profile-info { padding-left: 30px; }
     .arrow-left { left: 0; }
     .arrow-right { right: 0; }
 }
 
 /* --- Media Query para Mobile (Ajuste de la cabecera) --- */
 @media (max-width: 767px) {
-    .profile-info {
-        padding-left: 50px; 
-    }
-    
+    .profile-info { padding-left: 50px; }
     .profile-stats-boxes {
         width: 100%;
         padding: 0 50px;
         box-sizing: border-box;
         margin-top: 20px; 
     }
-}
 
-/* --- ESTILOS PARA EL CONTENIDO INTERNO DE LA TARJETA --- */
-.card-content-area {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-    text-align: left;
-}
+    /* --- CAMBIO: Aumento de tamaño para tarjetas en mobile --- */
+    .premio-card {
+        min-height: 504px; /* 420px * 1.2 */
+        padding-top: 198px; /* 165px * 1.2 */
+    }
 
-.card-main-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin: 0 0 2px 0;
-}
+    .premio-card img {
+        top: -96px; /* -80px * 1.2 */
+        width: 100%; /* Aumentado desde 90% */
+    }
 
-.card-subtitle {
-    font-size: 0.6rem;
-    color: #555;
-    line-height: 1.4;
-    margin: 0 0 12px 0;
-}
+    .card-main-title {
+        font-size: 1.32rem; /* 1.1rem * 1.2 */
+    }
 
-.card-stats-container {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-}
+    .card-subtitle {
+        font-size: 0.72rem; /* 0.6rem * 1.2 */
+    }
 
-.card-stat {
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 10px;
-    padding: 8px;
-}
+    .card-description {
+        font-size: 0.84rem; /* 0.7rem * 1.2 */
+    }
 
-.card-stat-label {
-    display: block;
-    font-size: 0.7rem;
-    color: #333;
-    text-align: center;
-}
+    .card-stat {
+        padding: 10px;
+    }
 
-.card-stat-value {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-top: 2px;
-    text-align: center;
+    .card-stat-label {
+        font-size: 0.84rem; /* 0.7rem * 1.2 */
+    }
+
+    .card-stat-value {
+        font-size: 0.96rem; /* 0.8rem * 1.2 */
+    }
+
+    .card-cta-button {
+        padding: 8px 24px;
+        font-size: 0.96rem; /* 0.8rem * 1.2 */
+    }
+
+    /* Ajuste para la tarjeta placeholder */
+    .placeholder-icon svg {
+        width: 58px;
+        height: 58px;
+    }
+
+    .placeholder-title {
+        font-size: 1.32rem; /* 1.1rem * 1.2 */
+    }
+
+    .placeholder-text {
+        font-size: 1.08rem; /* 0.9rem * 1.2 */
+    }
 }
