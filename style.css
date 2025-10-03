@@ -276,7 +276,7 @@ body {
     cursor: pointer;
     font-weight: 600;
     align-self: center;
-    margin-top: 16px;
+    margin-top: 32px;
 }
 
 /* --- Clases de color para las tarjetas --- */
@@ -440,10 +440,13 @@ body {
     .profile-info { padding-left: 30px; }
     .arrow-left { left: 0; }
     .arrow-right { right: 0; }
+    
 }
 
 /* --- Media Query para Mobile (Ajuste de la cabecera) --- */
 @media (max-width: 767px) {
+    .card-content-area { margin-top: 10px;}
+    .premio-card-placeholder { margin-top:-240px; }
     .profile-info { padding-left: 50px; }
     .profile-stats-boxes {
         width: 100%;
@@ -488,7 +491,7 @@ body {
     }
 
     .card-cta-button {
-        padding: 8px 24px;
+        padding: 8px 32px;
         font-size: 0.96rem; /* 0.8rem * 1.2 */
     }
 
