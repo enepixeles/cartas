@@ -148,7 +148,7 @@ body {
     text-align: left;
     margin-bottom: 20px;
     font-size: 1em;
-    padding-left: 50px; /* Alineación para móviles */
+    padding-left: 50px;
     box-sizing: border-box;
 }
 
@@ -177,17 +177,18 @@ body {
 /* --- Diseño de cada Tarjeta de Premio --- */
 .premio-card {
     border-radius: 16px;
-    padding: 220px 20px 40px 20px;
+    padding: 20px 27px 40px 27px;
     text-align: center;
     box-shadow: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     min-height: 420px;
     cursor: pointer;
     box-sizing: border-box;
     position: relative;
     transition: transform 0.3s ease;
+    padding-top: 165px;
 }
 
 .premio-card:hover {
@@ -212,8 +213,8 @@ body {
 }
 
 .premio-card .card-description {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.7rem;
+    line-height: 1.6;
     flex-grow: 1;
     margin-bottom: 20px;
     color: #333;
@@ -223,15 +224,16 @@ body {
     background-color: transparent;
     color: #333;
     border: 1px solid #555;
-    padding: 8px 24px;
+    padding: 6px 20px;
+    font-size: 0.8rem;
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
-    transition: none;
     align-self: center;
+    margin-top: 16px;
 }
 
-/* --- NUEVO: Clases de color para las tarjetas --- */
+/* --- Clases de color para las tarjetas --- */
 .fondo-rosado { background-color: #ffdde1; }
 .fondo-verde { background-color: #c8e6c9; }
 .fondo-azul { background-color: #bbdefb; }
@@ -240,8 +242,44 @@ body {
 .fondo-naranjo { background-color: #ffccbc; }
 .fondo-gris { background-color: #f2f2f2; }
 
-/* --- CAMBIO: Se eliminan las reglas de color :nth-of-type --- */
+/* --- NUEVO: Estilos para la tarjeta de marcador de posición --- */
+.premio-card-placeholder {
+    background-color: #f8f9fa !important;
+    border: 2px dashed #dee2e6;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
 
+.premio-card-placeholder:hover {
+    transform: none;
+    background-color: #f1f3f5 !important;
+    border-color: #adb5bd;
+}
+
+.placeholder-icon {
+    color: #adb5bd;
+    margin-bottom: 16px;
+}
+
+.placeholder-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+.placeholder-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #495057;
+    margin: 0 0 8px 0;
+}
+
+.placeholder-text {
+    font-size: 0.9rem;
+    color: #868e96;
+    margin: 0;
+}
 
 /* --- Flechas de Navegación del Carrusel con SVG --- */
 .carousel-arrow {
@@ -275,7 +313,6 @@ body {
 
 .arrow-left { left: -15px; }
 .arrow-right { right: -15px; }
-
 
 /* --- Ventana Modal para el Zoom (Pantalla Completa) --- */
 .modal-overlay {
@@ -382,4 +419,57 @@ body {
         box-sizing: border-box;
         margin-top: 20px; 
     }
+}
+
+/* --- ESTILOS PARA EL CONTENIDO INTERNO DE LA TARJETA --- */
+.card-content-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.card-main-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 2px 0;
+}
+
+.card-subtitle {
+    font-size: 0.6rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+}
+
+.card-stats-container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.card-stat {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.card-stat-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #333;
+    text-align: center;
+}
+
+.card-stat-value {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 2px;
+    text-align: center;
 }
